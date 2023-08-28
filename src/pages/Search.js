@@ -26,7 +26,7 @@ React.useEffect(()=>{
       console.log("hasil :", res?.data);
       setResults(res?.data);
       console.log(state);
-      console.log(state?.searchSlice?.keyword?.clear());
+      // console.log(state?.searchSlice?.keyword?.clear());
     })
     .catch((err) => {
       console.log("gagal :", err);
@@ -42,13 +42,8 @@ React.useEffect(()=>{
     });
 },[])
 
-const hendleClear=()=>{
-  clear(state?.searchSlice?.keyword);
-  console.log(state)
-}
   return (
     <div id className="container-fluid" style={{ backgroundColor: "#F4F4F4" }}>
-      <button onclick={hendleClear}></button>
       <div className="container">
         {/* Start Navbar */}
         <Navbar />
