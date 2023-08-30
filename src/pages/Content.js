@@ -4,8 +4,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
+import { useDispatch } from "react-redux";
+import { searchItem } from "../reduser/searchSlice";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+     const dispatch = useDispatch();
+     const navigation = useNavigate();
+     const [keyword, setKeyword] = React.useState();
   const [country, setCountry] = useState();
 
   React.useEffect(() => {
@@ -17,6 +23,10 @@ function Home() {
       .catch((err) => console.log("gagal :", err));
   }, []);
  
+    const handleSearch = () => {
+      dispatch(searchItem(keyword));
+      navigation("/Search");
+    };
   return (
     <div id className="container-fluid" style={{ backgroundColor: "#F4F4F4" }}>
       <div className="container">
@@ -46,6 +56,20 @@ function Home() {
             </p>
           </div>
           <div style={{ backgroundColor: "#F4F4F4", margin: "20px" }}>
+            <input
+              className="form-control form-control-lg mb-3"
+              style={{
+                fontSize: "18px",
+                width: "100%",
+              }}
+              placeholder="Search Country Name"
+              onChange={(e) => setKeyword(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.keyCode === 13) {
+                  handleSearch();
+                }
+              }}
+            />
             <table className="table table-borderless">
               <thead>
                 <tr>

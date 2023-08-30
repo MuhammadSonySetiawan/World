@@ -33,7 +33,7 @@ React.useEffect(()=>{
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "enter the correct name or be more specific",
+        text: "Enter the correct or more specific country name",
       });
       navigation("/Content");
         console.log(state);

@@ -7,14 +7,14 @@ import { searchItem } from "../reduser/searchSlice";
 
 
 function Navbar() {
-   const dispatch = useDispatch();
-   const navigation = useNavigate();
-   const [keyword, setKeyword] = React.useState();
+  //  const dispatch = useDispatch();
+  //  const navigation = useNavigate();
+  //  const [keyword, setKeyword] = React.useState();
    
-   const handleSearch =()=>{
-      dispatch(searchItem(keyword));
-      navigation("/Search");
-    }
+  //  const handleSearch =()=>{
+  //     dispatch(searchItem(keyword));
+  //     navigation("/Search");
+    // }
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-light">
@@ -36,7 +36,7 @@ function Navbar() {
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item">
+              {/* <li class="nav-item">
                 <input
                   className="form-control form-control-lg"
                   style={{
@@ -51,7 +51,7 @@ function Navbar() {
                     }
                   }}
                 />
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link className="nav-link " aria-current="page" to="/">
                   Home
