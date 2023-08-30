@@ -1,24 +1,20 @@
 import React from 'react'
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { searchItem } from "../reduser/searchSlice";
 
 
 
 function Navbar() {
    const dispatch = useDispatch();
-   const state = useSelector((state) => state.searchItem);
-  
-    const navigation = useNavigate()
-    const [keyword, setKeyword] = React.useState()
-    const [content, setContent] = React.useState();
-    const handleSearch =()=>{
+   const navigation = useNavigate();
+   const [keyword, setKeyword] = React.useState();
+   
+   const handleSearch =()=>{
       dispatch(searchItem(keyword));
       navigation("/Search");
     }
-      // console.log(state);
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-light">

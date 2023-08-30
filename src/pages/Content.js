@@ -5,30 +5,17 @@ import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { searchItem } from "../reduser/searchSlice";
-
 function Home() {
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state.searchItem);
-  const [country, setCountry] = React.useState();
-  const [valueDetail, setValueDetail] = React.useState();
+  const [country, setCountry] = useState();
 
   React.useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/all`)
       .then((res) => {
         setCountry(res?.data);
-        console.log(res?.data);
       })
       .catch((err) => console.log("gagal :", err));
   }, []);
-
-  const hendleDetail=(item)=>{
-    
-    console.log(item);
-  }
  
   return (
     <div id className="container-fluid" style={{ backgroundColor: "#F4F4F4" }}>
@@ -65,7 +52,6 @@ function Home() {
                   <th scope="col">No. </th>
                   <th scope="col">Country Name</th>
                   <th scope="col">Region</th>
-                  {/* <th scope="col">Handle</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -80,15 +66,13 @@ function Home() {
                     <td>
                       <Link
                         key={key}
-                        to={`/Content/Detail/${item?.capital}`}
+                        to={`/Content/Detail/${item?.name?.common}`}
                         style={{ textDecoration: "none" }}
-                        name={hendleDetail}
                       >
                         {item?.name?.common ?? "Country name does not exist"}
                       </Link>
                     </td>
                     <td>{item?.region}</td>
-                    {/* <td>@mdo</td> */}
                   </tr>
                 ))}
               </tbody>

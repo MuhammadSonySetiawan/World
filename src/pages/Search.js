@@ -5,13 +5,13 @@ import Footer from "../component/Footer";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import { dispatch, useSelector } from "react-redux/es/hooks/useSelector";
-import { searchItem, clearData, reset } from "../reduser/searchSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { clearData } from "../reduser/searchSlice";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { clear } from "@testing-library/user-event/dist/clear";
 
 function Search() {
+const dispatch = useDispatch();
 const navigation = useNavigate()
 const state = useSelector((state) => state)
 const [results, setResults] = React.useState();
@@ -26,7 +26,7 @@ React.useEffect(()=>{
       console.log("hasil :", res?.data);
       setResults(res?.data);
       console.log(state);
-      // console.log(state?.searchSlice?.keyword?.clear());
+      dispatch(clearData());
     })
     .catch((err) => {
       console.log("gagal :", err);
@@ -35,10 +35,9 @@ React.useEffect(()=>{
         title: "Oops...",
         text: "enter the correct name or be more specific",
       });
-      // dispatch(clearData());
       navigation("/Content");
         console.log(state);
-      clear(state?.searchSlice?.keyword);
+      dispatch(clearData());
     });
 },[])
 
@@ -67,7 +66,6 @@ React.useEffect(()=>{
                   <th scope="col">Flag</th>
                   <th scope="col">Country Name</th>
                   <th scope="col">Region</th>
-                  {/* <th scope="col">Handle</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -84,7 +82,7 @@ React.useEffect(()=>{
                         <td>
                           <Link
                             key={key}
-                            to={`/Content/Detail/${item?.capital}`}
+                            to={`/Content/Detail/${item?.name?.common}`}
                             style={{ textDecoration: "none" }}
                           >
                             {item?.name?.common ??
@@ -92,12 +90,18 @@ React.useEffect(()=>{
                           </Link>
                         </td>
                         <td>{item?.region}</td>
-                        {/* <td>@mdo</td> */}
                       </tr>
                     ))}
                   </>
                 ) : (
-                  <div className="text-center bg-primary">"not found"</div>
+                  <tr>
+                    <td
+                      className="text-center fs-2 fw-bold text-secondary"
+                      colspan="3"
+                    >
+                      "Not Found"
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>
