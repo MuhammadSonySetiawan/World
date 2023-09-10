@@ -81,9 +81,7 @@ function Home() {
                 </tr>
               </thead>
               <tbody>
-                
-
-                {/* {country?.map((item, key) => (
+                {country?.map((item, key) => (
                   <tr key={key}>
                     <th scope="row">
                       <img
@@ -102,7 +100,7 @@ function Home() {
                     </td>
                     <td>{item?.region}</td>
                   </tr>
-                ))} */}
+                ))}
               </tbody>
             </table>
           </div>
