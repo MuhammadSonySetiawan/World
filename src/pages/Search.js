@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/Home.css";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 import axios from "axios";
@@ -26,7 +25,7 @@ React.useEffect(()=>{
       console.log("hasil :", res?.data);
       setResults(res?.data);
       console.log(state);
-      dispatch(clearData());
+      // dispatch(clearData());
     })
     .catch((err) => {
       console.log("gagal :", err);
@@ -37,7 +36,7 @@ React.useEffect(()=>{
       });
       navigation("/Content");
         console.log(state);
-      dispatch(clearData());
+      // dispatch(clearData());
     });
 },[])
 

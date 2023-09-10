@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     path: "/Search",
     element: <Search />,
   },
-]);
+ ]);
 
 function App() {
   return (

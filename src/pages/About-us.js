@@ -1,5 +1,4 @@
 import React from "react";
-import "../style/Home.css";
 import Navbar from "../component/Navbar";
 import Footer from "../component/Footer";
 function About() {

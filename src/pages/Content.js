@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../style/Home.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Navbar from "../component/Navbar";
@@ -7,7 +6,8 @@ import Footer from "../component/Footer";
 import { useDispatch } from "react-redux";
 import { searchItem } from "../reduser/searchSlice";
 import { useNavigate } from "react-router-dom";
-
+import { clearData } from "../reduser/searchSlice";
+import InfiniteScroll from "react-infinite-scroll-component";
 function Home() {
      const dispatch = useDispatch();
      const navigation = useNavigate();
@@ -19,6 +19,7 @@ function Home() {
       .get(`https://restcountries.com/v3.1/all`)
       .then((res) => {
         setCountry(res?.data);
+        dispatch(clearData());
       })
       .catch((err) => console.log("gagal :", err));
   }, []);
@@ -27,6 +28,7 @@ function Home() {
       dispatch(searchItem(keyword));
       navigation("/Search");
     };
+
   return (
     <div id className="container-fluid" style={{ backgroundColor: "#F4F4F4" }}>
       <div className="container">
@@ -73,13 +75,15 @@ function Home() {
             <table className="table table-borderless">
               <thead>
                 <tr>
-                  <th scope="col">No. </th>
+                  <th scope="col">Flag </th>
                   <th scope="col">Country Name</th>
                   <th scope="col">Region</th>
                 </tr>
               </thead>
               <tbody>
-                {country?.map((item, key) => (
+                
+
+                {/* {country?.map((item, key) => (
                   <tr key={key}>
                     <th scope="row">
                       <img
@@ -98,7 +102,7 @@ function Home() {
                     </td>
                     <td>{item?.region}</td>
                   </tr>
-                ))}
+                ))} */}
               </tbody>
             </table>
           </div>
